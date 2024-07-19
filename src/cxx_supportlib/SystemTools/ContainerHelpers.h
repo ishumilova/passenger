@@ -29,6 +29,12 @@ _linuxAutoDetectInContainer() {
 		return true;
 	}
 
+	/* https://github.com/containers/podman/issues/6192 */
+    /* https://github.com/containers/podman/issues/3586#issuecomment-661918679 */
+	if (fileExists("/.containerenv")) {
+		return true;
+	}
+
 	if (fileExists("/proc/vz") && !fileExists("/proc/bc")) {
 		return true;
 	}
